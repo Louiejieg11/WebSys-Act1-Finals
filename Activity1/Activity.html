@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inputText">
+    <button onclick="fetchMessage()">Enter</button>
+</body>
+
+    <script>
+        function fetchMessage(){
+            const id = document.getElementById('inputText').value
+
+            let xhr = new XMLHttpRequest()
+            xhr.open('GET', `https://louiejieg11.github.io/WebSysApi/data.json`, true)
+
+            xhr.onload = function() {
+               
+               if (xhr.status === 200) {
+                   let response = JSON.parse(xhr.responseText);
+                    let found = data.find(item => item.id === id)
+               }    
+               if(found){
+                document.getElementById('message').innerHTML =
+                `<strong>Name:</strong> ${found.cpu}<br>
+                <strong>Age:</strong> ${found.ram}<br>
+                <strong>Email:</strong> ${found.storage}
+                <strong>Email:</strong> ${found.gpu}`;
+                
+                
+               }
+               else {
+                   document.getElementById('message').innerText = 'Error';
+               }
+           };
+
+           xhr.send();
+       }
+      
+        
+    </script>
+</html>
